@@ -8,9 +8,38 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+            android:id="@id/restaurantName"
+            android:layout_width = "match_parent"
+            android:layout_height="60sp"
+            android:textAlignment="gravity"
+            android:textSize="50dp"
+            android:hint="Restaurant Name"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+         android:background="#010101"
+         android:layout_below="@id/restaurantName"
+         android:id="@id/separator"/>
+    <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:id="@id/dishName"
+            android:hint="dish Name"
+            android:layout_below="@id/separator"
+            android:layout_alignLeft="@id/restaurantName"
+            />
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/imageArea"
+            android:layout_gravity="bottom"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/dishName"/>
+
 
 </RelativeLayout>

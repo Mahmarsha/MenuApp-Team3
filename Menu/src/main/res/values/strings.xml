@@ -4,5 +4,9 @@
     <string name="app_name">Menu</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="hello_customer">hello</string>
+    <string name="dish_type">2</string>
+    <string name="menu_help">3</string>
+    <string name="descr_overflow_button">cas</string>
 
 </resources>

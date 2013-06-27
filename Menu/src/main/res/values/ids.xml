@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textView" type="id">text</item><item name="restaurantName" type="id"/><item name="dishName" type="id"/><item name="imageArea" type="id"/><item name="separator" type="id"/>
+</resources>
