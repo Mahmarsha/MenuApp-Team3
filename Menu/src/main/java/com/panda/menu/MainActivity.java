@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
@@ -36,6 +37,15 @@ public class MainActivity extends Activity {
     private TextView restaurantView;
     private TextView dishView;
     private ImageView imageView;
+    private ImageView imageView2;
+    private TextView iceCreamView;
+    private ImageView imageArea1;
+    private ScrollView scrollView;
+    private ImageView imageView3;
+    private TextView beefView;
+
+
+
     private Bitmap bitmap;
 
     @Override
@@ -47,6 +57,9 @@ public class MainActivity extends Activity {
         restaurantView = (TextView)findViewById(R.id.restaurantName);
         dishView = (TextView)findViewById(R.id.dishName);
         imageView = (ImageView)findViewById(R.id.imageArea);
+        imageView2 = (ImageView)findViewById(R.id.imageArea1);
+        iceCreamView = (TextView)findViewById(R.id.iceCream);
+        scrollView =(ScrollView)findViewById(R.id.scrollView);
 
 
         new Handler().postDelayed(new Runnable()
@@ -58,89 +71,60 @@ public class MainActivity extends Activity {
                 checkNetworkConnection(restaurantView);
                 checkNetworkConnection(dishView);
                 checkNetworkConnection(imageView);
-
+                checkNetworkConnection(imageView2);
+                checkNetworkConnection(iceCreamView);
 
 
             }
         },RESULT_RESTUARANT);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
 
-
     }
 
-
-    public void checkNetworkConnection(View view) {
+    public void checkNetworkConnection(View view)
+    {
         String stringUrl = "http://10.0.2.2:8080/name";
         String stringUrl1 = "http://10.0.2.2:8080/starter";
         String stringUrl2 = "http://10.0.2.2:8080/image/pandaim7";
-
-
+        String stringUrl3 = "http://10.0.2.2:8080/sweets";
+        String stringUrl4 = "http://10.0.2.2:8080/image/pandaim10";
 
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        if (networkInfo != null && networkInfo.isConnected()) {
+        if (networkInfo != null && networkInfo.isConnected())
+        {
             new DownloadWebpageTask().execute(stringUrl);
             new DownloadWebpageTask().execute(stringUrl1);
             new DownloadWebpageTask().execute(stringUrl2);
-           // DownloadImage(stringUrl2);
+            new DownloadWebpageTask().execute(stringUrl3);
+            new DownloadWebpageTask().execute(stringUrl4);
 
-        } else {
+
+        } else
+        {
             restaurantView.setText("No network connection available.");
             dishView.setText("No network connection available");
-
-
+            iceCreamView.setText("No network connection available");
 
         }
     }
 
-
-//    public Bitmap DownloadImg(View view){
-//        String stringUrl2 = "http://10.0.2.2:8080/image/pandaim7";
-//        ConnectivityManager connMgr = (ConnectivityManager)
-//                getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-//        if (networkInfo != null && networkInfo.isConnected()) {
-//            new DownloadWebpageTask().execute(stringUrl2);
-//            DownloadImage(stringUrl2);
-//
-//        } else {
-//            TextView imageView = null;
-//            imageView.setText("No network connection available.");
-//        }
-//
-//
-//    }
-//    public Bitmap DownloadImage(String stringUrl2) {
-//        Bitmap bitmap = null;
-//        InputStream in = null;
-//
-//        try {
-//
-//            bitmap = BitmapFactory.decodeStream(in);
-//            in.close();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return bitmap;
-//
-//    }
-
-
-    public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
+    public class DownloadWebpageTask extends AsyncTask<String, Void, String>
+    {
         private String url;
 
         @Override
-        protected String doInBackground(String... urls) {
+        protected String doInBackground(String... urls)
+        {
             url = urls[0];
 
             try {
@@ -154,7 +138,8 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(String result)
+        {
             if(url.contains("name")==true)
             {
             restaurantView.setText(result);
@@ -162,27 +147,32 @@ public class MainActivity extends Activity {
             else if(url.contains("starter")==true)
             {
                 dishView.setText(result);
-            }else
-            {
+            }
+            else if(url.contains("sweets")==true){
+                iceCreamView.setText(result);
+            }
+            else if(url.contains("image/pandaim7")==true){
                 imageView.setImageBitmap(bitmap);
             }
 
+                else
+
+            {
+                imageView2.setImageBitmap(bitmap);
+            }
 
         }
 
-        private String downloadUrl(String myUrl) throws IOException, XmlPullParserException {
+        private String downloadUrl(String myUrl) throws IOException, XmlPullParserException
+        {
             InputStream is = null;
-
 
             // Only display the first 500 characters of the retrieved
             // web page content.
 
             int len = 500;
 
-
-
             try {
-
 
                 Log.d(DEBUG_TAG, "The url is: " + myUrl);
                 URL url = new URL(myUrl);
@@ -200,62 +190,39 @@ public class MainActivity extends Activity {
 
                 //return text and image
                 if(url.toString().contains("name") ||
-                        url.toString().contains("starter")||url.toString().contains("sweets") ) {
+                        url.toString().contains("starter")||url.toString().contains("sweets") )
+                {
                     String contentAsString =readIt(is, len);
                     return Jsoup.parse(contentAsString).text();
-                } else {
+                } else
+
                     bitmap = BitmapFactory.decodeStream(is);
                     return "http://10.0.2.2:8080/image/pandaim7";
-                }
+//                }
+//                else if (url.toString().contains("sweets")){
+//
+//                    bitmap = BitmapFactory.decodeStream(is);
+//                    return "http://10.0.2.2:8080/image/pandaim9";
+//                }
+//                else{
+//                    return null;
+//                }
 
-
-
-            } finally {
+            } finally
+            {
                 if (is != null) {
                     is.close();
                }
             }
         }
-        private String readIt(InputStream is, int len) throws IOException {
+        private String readIt(InputStream is, int len) throws IOException
+        {
             Reader reader;
             reader = new InputStreamReader(is, "UTF-8");
             char[] buffer = new char[len];
             reader.read(buffer);
             return new String(buffer);
         }
-
-        //Image conversion and download
-//        public InputStream OpenHttpConnection(String urlString2)
-//                throws IOException
-//        {
-//            InputStream in = null;
-//            int response = -1;
-//
-//            URL url = new URL(urlString2);
-//            URLConnection conn = url.openConnection();
-//
-//            if (!(conn instanceof HttpURLConnection))
-//                throw new IOException("Not an HTTP connection");
-//
-//            try{
-//                HttpURLConnection httpConn = (HttpURLConnection) conn;
-//                httpConn.setAllowUserInteraction(false);
-//                httpConn.setInstanceFollowRedirects(true);
-//                httpConn.setRequestMethod("GET");
-//                httpConn.connect();
-//
-//                response = httpConn.getResponseCode();
-//                if (response == HttpURLConnection.HTTP_OK) {
-//                    in = httpConn.getInputStream();
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw new IOException("Error connecting");
-//            }
-//            return in;
-//        }
-
 
     }
     }

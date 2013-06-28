@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="textView" type="id">text</item><item name="restaurantName" type="id"/><item name="dishName" type="id"/><item name="imageArea" type="id"/><item name="separator" type="id"/>
+    <item name="textView" type="id">text</item><item name="restaurantName" type="id"/><item name="dishName" type="id"/><item name="imageArea" type="id"/><item name="separator" type="id"/><item name="separator1" type="id"/>
+    <item name="textViewNull" type="id">textViewNull</item>
+    <item name="iceCream" type="id">iceCream</item>
+    <item name="separator2" type="id">separator2</item>
+    <item name="imageArea1" type="id">imageArea1</item>
+    <item name="textViewNull1" type="id">textViewNull</item>
+    <item name="textViewNull2" type="id">textViewNull2</item>
+    <item name="beef" type="id">beef</item>
+    <item name="imageArea3" type="id">imageArea3</item>
 </resources>

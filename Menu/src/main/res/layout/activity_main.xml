@@ -1,21 +1,34 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_below="@id/imageArea"
+        android:layout_alignRight="@id/imageArea"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="right">
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="500dp"
+    tools:context=".MainActivity"
+ >
 
 
     <TextView
             android:id="@id/restaurantName"
             android:layout_width = "match_parent"
-            android:layout_height="60sp"
-            android:textAlignment="gravity"
-            android:textSize="50dp"
-            android:hint="Restaurant Name"/>
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:paddingLeft="80dp"
+            android:textSize="30dp"
+            android:hint="Restaurant Name"
+            android:layout_gravity="center|top"
+            android:layout_alignTop="@id/separator2"
+            android:layout_alignParentLeft="true"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -29,17 +42,82 @@
             android:textSize="30dp"
             android:id="@id/dishName"
             android:hint="dish Name"
+            android:paddingLeft="5dp"
             android:layout_below="@id/separator"
             android:layout_alignLeft="@id/restaurantName"
             />
 
     <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:paddingBottom="260dp"
             android:id="@id/imageArea"
+            android:layout_below="@id/dishName"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="11dp"/>
+
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="#ffffff"
+            android:layout_below="@id/imageArea"
+            android:id="@id/textViewNull"
+            android:layout_alignBottom="@id/imageArea"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#010101"
+            android:height="1dp"
+            android:paddingBottom="200dp"
+            android:id="@id/separator1"
+            android:layout_alignTop="@id/iceCream"
+            android:layout_alignParentLeft="true"/>
+
+
+
+    <TextView
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:textSize="30dp"
+            android:id="@id/iceCream"
+            android:hint="@string/iceCream"
             android:layout_gravity="bottom"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/dishName"/>
+            android:paddingLeft="10dp"
+             android:paddingBottom="170dp"
+            android:layout_marginBottom="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
+
+
+
+    <ImageView
+          android:baselineAlignBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+           android:paddingBottom="0dp"
+            android:id="@id/imageArea1"
+
+            android:layout_gravity="center_horizontal|bottom"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+
+            />
+
+
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#010101"
+            android:id="@id/separator2"
+            android:layout_below="@id/textViewNull1"
+            />
+
 
 
 </RelativeLayout>
+</ScrollView>
